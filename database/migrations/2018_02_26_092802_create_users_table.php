@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('unicode', 25);
             $table->string('image', 250);
             $table->integer('level');
+            $table->integer('validate');
             $table->timestamps();
         });
     }

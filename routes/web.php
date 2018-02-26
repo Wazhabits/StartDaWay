@@ -12,3 +12,9 @@
 */
 
 
+Route::get('/', 'SiteView@index')->name('index');
+Route::post('member/register', 'DataController@MemberRegister');
+Route::post('member/connect', 'DataController@MemberConnect');
+Route::post('member/update', 'DataController@MemberUpdate');
+Route::post('member/disconnect', 'DataController@MemberDisconnect');
+Route::get('activation/{unicode}', 'DataController@MemberActivation');
