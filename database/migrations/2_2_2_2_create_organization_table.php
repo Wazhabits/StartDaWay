@@ -16,6 +16,7 @@ class CreateOrganizationTable extends Migration
         Schema::create('organizations', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 50);
+            $table->string('siren', 9);
             $table->string('description', 1000);
             $table->string('logo', 500);
             $table->string('website', 200);
@@ -26,6 +27,7 @@ class CreateOrganizationTable extends Migration
             $table->string('ad_name', 300);
             $table->string('ad_pc', 5);
             $table->string('ad_city', 100);
+            $table->string('unicode', 5);
             $table->integer('owner_id');
             $table->foreign('owner_id')->references('id')->on('users');
             $table->timestamps();

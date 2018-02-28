@@ -59,7 +59,7 @@ class Users extends Model
 // Unicode Creator (unique key for account activation)
 // Generate 25 length string, with a-z A-Z 0-9 chars
 //
-    protected static function CreateUnicode($length) {
+    public static function CreateUnicode($length) {
         // Allowed chars
         $char = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         // Result string
@@ -243,8 +243,9 @@ class Users extends Model
 //
     public static function Deletor(Request $request) {
         $user = $request->session()->get('user');
-        $deletion = Users::where('id', $user->id)->delete();
-        Users::Disconnect();
+        Users::where('id', $user->id)->delete();
+        Users::Disconnect($request);
+        unset($user);
     }
 
 
