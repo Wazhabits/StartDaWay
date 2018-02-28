@@ -2,21 +2,69 @@
 
 namespace App;
 
+
+
+
+
+
+
+//
+// IMPORT CLASS USED BY USER
+//
+
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
+
+
+
+
+
+
+//
+// USERS CONTAIN :
+//      _ login
+//      _ password
+//      _ firstname
+//      _ lastname
+//      _ email
+//      _ phone number
+//      _ unicode
+//
+// USERS USE ELOQUENT MODEL
+//
+// BEGIN Users CLASS
+//
+
 class Users extends Model
 {
+
+
+    // TABLE DECLARATION
+    // MODEL Users WILL HAVE users TABLE
+
+
     protected $table = "users";
 
-    // Unicode Creator (unique key for account activation)
-    // Generate 25 length string, with a-z A-Z 0-9 chars
+
+
+
+
+
+//
+// UNICODE
+//
+// Unicode Creator (unique key for account activation)
+// Generate 25 length string, with a-z A-Z 0-9 chars
+//
     protected static function CreateUnicode($length) {
         // Allowed chars
         $char = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        // Result string
         $unicode = "";
+        // Index
         $i = 0;
 
         // Generate $length unicode
@@ -29,9 +77,19 @@ class Users extends Model
         return $unicode;
     }
 
-    // Account activation function getting the unicode to parameter
-    // Call by the mail link's route
-    // Need to get valid unicode
+
+
+
+
+
+
+//
+// ACTIVATION
+//
+// Account activation function getting the unicode to parameter
+// Call by the mail link's route
+// Need to get valid unicode
+//
     public static function Activate ($unicode) {
 
         // Count number of unicode occurence's in DataBase
@@ -60,27 +118,32 @@ class Users extends Model
         }
     }
 
-    // Account register function
-    // Catch error :
-    //   _ Inputs Empty
-    //   _ Password & Confirmation doesn't match
-    //   _ Email & Login already exist
-    //   _ Login length < 5
 
+
+
+
+
+
+//
+// REGISTER
+//
+// Account register function
+// Catch error :
+//   _ Inputs Empty
+//   _ Password & Confirmation doesn't match
+//   _ Email & Login already exist
+//   _ Login length < 5
+//
     public static function Register(Request $request) {
-
         // Get form inputs
         $inputs = $request->all();
-
         // Detect if inputs are empty | Mail or Login already exist | Login length < 5
         if ((!empty($inputs['login']) || !empty($inputs['password']) || !empty($inputs['email']) ||
                 !empty($inputs['firstname']) || !empty($inputs['lastname']) || !empty($inputs['phone']))
                 && ($inputs['password'] == $inputs['confirmation']) && (strlen($inputs['login']) < 5)
                 && (strlen($inputs['phone'])) < 10 && (Users::where('email', $inputs['mail'])->count() == 0)) {
-
             // Create a new user instance
             $NewUser = new Users;
-
             // Set the user informations
             $NewUser->login = $inputs['login'];
             $NewUser->password = md5($inputs['password']);
@@ -88,13 +151,10 @@ class Users extends Model
             $NewUser->lastname = $inputs['lastname'];
             $NewUser->email = $inputs['mail'];
             $NewUser->phone = $inputs['phone'];
-
             // Generating Account unicode
             $NewUser->unicode = self::CreateUnicode(25);
-
             // Set the default image to null
             $NewUser->image = "null";
-
             // Set the account level
             //   _ 1 -> Viewer
             //   _ 2 -> Publisher
@@ -121,8 +181,23 @@ class Users extends Model
             return view('site.index', ['error' => 'Veuillez vérifier que tout les champs soit bien rempli et valide.']);
     }
 
-    // Account connection function
-    // Need $request parameter, who contain inputs
+
+
+
+
+
+//
+// CONNECTION
+//
+// Account connection function
+// Need $request parameter, who contain inputs
+// catch error :
+//      _ login incorrect
+//      _ password incorrect
+// login can be :
+//      _ user login
+//      _ user email
+//
     public static function Connect(Request $request) {
         // Get inputs
         $inputs = $request->all();
@@ -155,13 +230,33 @@ class Users extends Model
             pseudo / mots de passe et/ou activez votre compte avec le lien envoyer à votre adresse mail"]);
     }
 
-    // Delete user from Users Table
-    public static function DeleteUser(Request $request) {
+
+
+
+
+
+//
+// DELETE
+//
+// Delete user from Users Table users
+//
+    public static function Deletor(Request $request) {
         $user = $request->session()->get('user');
-        $deletion = Users::where('id', $user['id'])->delete();
+        $deletion = Users::where('id', $user->id)->delete();
+        Users::Disconnect();
     }
 
-    // Account discconect function
+
+
+
+
+
+//
+// DISCONNECT
+//
+// Account discconect function
+// Function destroy session started
+//
     public static function Disconnect(Request $request) {
         // Destroy all session running
         $request->session()->flush();
@@ -169,51 +264,50 @@ class Users extends Model
         return redirect()->route('index');
     }
 
-    // Account updater function
-    public static function Updator(Request $request) {
-        // Get input
-        //   _ new password
-        //   _ new email
-        $inputs = $request->all();
 
+
+
+
+
+//
+// UPDATE ACCOUNT
+//
+// Account updater function
+// User can update :
+//      _ email
+//      _ password
+//
+    public static function Updator(Request $request) {
+        $inputs = $request->all();
         // If password and confirmation math, and email input not empty
         if ($inputs['password'] == $inputs['confirmation'] && !empty($inputs['email'])) {
             // Get user line from DataBase by session information
             $user = Users::where('id', $request->session()->get('user')->id)->get()[0];
-
             // If input sentinel password's was not found
             if ($inputs['password'] != 'noresetpassword')
                 // Password Change
                 $user->password = md5($inputs['password']);
-
             // If modify email adress
             if ($inputs['email'] != $user->email) {
                 // User must re-activate hes account
                 $user->validate = 0;
-
                 // New unicode generate
                 $user->unicode = self::CreateUnicode(25);
-
                 // Information mail send at the old email adress
                 Mail::send('mail.member.notification', ["user" => $user], function ($message) use ($user) {
                     $message->to($user->email, $user->firstname . " " . $user->lastname)->subject('Mise à jour du profil');
                 });
-
                 // Email change
                 $user->email = $inputs['email'];
-
                 // Email of account reactivation send to new adress email
                 Mail::send('mail.member.activation', ["user" => $user], function ($message) use ($user) {
                     $message->to($user->email, $user->firstname . " " . $user->lastname)->subject('Mise à jour du profil');
                 });
-
                 // Disconnect user
                 $request->session()->flush();
             }
-
             // Save modification
             $user->save();
-
             // Redirect to index page
             return redirect()->route('index');
         }
