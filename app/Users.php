@@ -42,8 +42,8 @@ class Users extends Model
 {
 
 
-    // TABLE DECLARATION
-    // MODEL Users WILL HAVE users TABLE
+// TABLE DECLARATION
+// MODEL Users WILL HAVE users TABLE
 
 
     protected $table = "users";
@@ -138,10 +138,11 @@ class Users extends Model
         // Get form inputs
         $inputs = $request->all();
         // Detect if inputs are empty | Mail or Login already exist | Login length < 5
-        if ((!empty($inputs['login']) || !empty($inputs['password']) || !empty($inputs['email']) ||
+        if (
+            (!empty($inputs['login']) || !empty($inputs['password']) || !empty($inputs['email']) ||
                 !empty($inputs['firstname']) || !empty($inputs['lastname']) || !empty($inputs['phone']))
-                && ($inputs['password'] == $inputs['confirmation']) && (strlen($inputs['login']) < 5)
-                && (strlen($inputs['phone'])) < 10 && (Users::where('email', $inputs['mail'])->count() == 0)) {
+                && ($inputs['password'] == $inputs['confirmation']) && (strlen($inputs['login']) > 5)
+                && (strlen($inputs['phone']) > 9) && (Users::where('email', $inputs['mail'])->count() == 0)) {
             // Create a new user instance
             $NewUser = new Users;
             // Set the user informations
