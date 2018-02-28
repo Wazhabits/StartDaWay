@@ -27,6 +27,6 @@ class UsersTableSeeder extends Seeder
             'unicode' => str_random(25),
             'validate' => 1,
         ]);
-        //factory(App\Users::class, 50)->create();
+        factory(App\Users::class, 50)->create();
     }
 }

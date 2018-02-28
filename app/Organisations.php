@@ -81,6 +81,6 @@ class Organizations extends Model
             return redirect()->route('index');
         }
         else
-            return view('site.index', ["error" => "Veuillez vous assurer que vous avez bien remplit les champs requis"]);
+            return redirect()->route('index')->with(["error" => "Veuillez vous assurer que vous avez bien remplit les champs requis"]);
     }
 }

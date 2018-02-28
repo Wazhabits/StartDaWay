@@ -98,7 +98,7 @@ class Users extends Model
 
         // If unicode didn't match
         if ($valid == 0)
-            return view('site.index', ['error' => "Ce compte est déja activer ou n'est rattaché à aucun compte existant."]);
+            return redirect()->route('index')->with(['error' => "Ce compte est déja activer ou n'est rattaché à aucun compte existant."]);
         else {
             // If DataBase get 1 unicode in Users Table
             // Get associate user
@@ -113,7 +113,7 @@ class Users extends Model
                 $user->validate = 1;
                 $user->save();
                 // Return to index page, with a validation message
-                return view('site.index', ['valid' => "Votre compte à bien été validé"]);
+                return redirect()->route('index')->with(['valid' => "Votre compte à bien été validé"]);
             }
         }
     }
@@ -179,7 +179,7 @@ class Users extends Model
             return redirect()->route('index');
         }
         else
-            return view('site.index', ['error' => 'Veuillez vérifier que tout les champs soit bien rempli et valide.']);
+            return redirect()->route('index')->with(['error' => 'Veuillez vérifier que tout les champs soit bien rempli et valide.']);
     }
 
 
@@ -207,7 +207,7 @@ class Users extends Model
             if (Users::where('email', $inputs['login'])->count() < 1)
                 // If login or email didn't match in DataBase
                 // return to index with error message
-                return view('site.index', ["error" => "Erreur lors de la connexion"]);
+                return redirect()->route('index')->with(["error" => "Erreur lors de la connexion"]);
             else
                 // Get user by email information
                 $user = Users::where('email', $inputs['login'])->get()[0];
@@ -227,7 +227,7 @@ class Users extends Model
         else
             // Return to index with error message
             // Password didn't match, or account isn't validate
-            return view('site.index', ["error" => "Erreur lors de la connexion, vérifier votre 
+            return redirect()->route('index')->with(["error" => "Erreur lors de la connexion, vérifier votre 
             pseudo / mots de passe et/ou activez votre compte avec le lien envoyer à votre adresse mail"]);
     }
 
@@ -313,5 +313,7 @@ class Users extends Model
             // Redirect to index page
             return redirect()->route('index');
         }
+        else
+            return redirect()->route('index')->with([ 'error' => 'Veuillez vous assurer que vous avez bien remplit vos champs']);
     }
 }
