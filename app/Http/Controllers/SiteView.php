@@ -43,4 +43,13 @@ class SiteView extends ViewController
 
 
 
+
+//
+//
+// SEARCH PAGE CONTROLLER '/search/'
+//
+//
+    public function Search(Request $request, $search) {
+        return $this->SearchView($request, $search);
+    }
 }

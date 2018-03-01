@@ -73,4 +73,18 @@ class DataController extends Controller
 
 
 
+
+
+//
+//
+// || SEARCH INPUT'S TREATMENT
+//
+//
+// DO URL ENCODE TO INPUT VALUES
+//
+    public function Search (Request $request) {
+        $input = $request->all();
+        $url = urlencode($input['search']);
+        return redirect('search/' . $url);
+    }
 }
