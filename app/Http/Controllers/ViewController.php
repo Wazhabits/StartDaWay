@@ -67,19 +67,30 @@ class ViewController extends Controller
 //
     public function SearchView(Request $request, $search) {
         $searchreal = urldecode($search);
-
-
-        $fusers = Users::where('login', 'LIKE', '%' . $search . '%')->orWhere('email', 'LIKE', '%' . $search . '%')->orWhere('firstname', 'LIKE', '%' . $search . '%')->orWhere('lastname', 'LIKE', '%' . $search . '%')->get();
-
-
-        $farticles = Articles::where('title', 'LIKE', '%' . $search . '%')->orWhere('description', 'LIKE', '%' . $search . '%')->get();
-
-
-        $forganizations = Organizations::where('name', 'LIKE', '%' . $search . '%')->orWhere('description', 'LIKE', '%' . $search . '%')->orWhere('website', 'LIKE', '%' . $search . '%')->get();
-
-
-        $fjobs = Jobs::where('title', 'LIKE', '%' . $search . '%')->orWhere('description', 'LIKE', '%' . $search . '%')->get();
-        return view('site.search', ['users' => $fusers, 'articles' => $farticles, 'organizations' => $forganizations, 'jobs' => $fjobs]);
+        $words = explode(" ", $searchreal);
+        $fusers = array();
+        $forganizations = array();
+        $fjobs = array();
+        $farticles = array();
+        foreach($words as $word) {
+            $fuser = array_merge($fusers, Users::where('login', 'LIKE', '%' . $word . '%')
+                ->orWhere('email', 'LIKE', '%' . $word . '%')
+                ->orWhere('firstname', 'LIKE', '%' . $word . '%')
+                ->orWhere('lastname', 'LIKE', '%' . $word . '%')->get()->toArray());
+            $fusers = array_unique($fuser, SORT_REGULAR);
+            $farticle = array_merge($farticles, Articles::where('title', 'LIKE', '%' . $word . '%')
+                ->orWhere('description', 'LIKE', '%' . $word . '%')->get()->toArray());
+            $farticles = array_unique($farticle, SORT_REGULAR);
+            $forganization = array_merge($forganizations, Organizations::where('organizations.name', 'LIKE', '%' . $word . '%'
+            )->orWhere('organizations.description', 'LIKE', '%' . $word . '%')
+                ->orWhere('organizations.website', 'LIKE', '%' . $word . '%')
+                ->join('users', 'users.id', '=', 'organizations.owner_id')->get()->toArray());
+            $forganizations = array_unique($forganization, SORT_REGULAR);
+            $fjob = array_merge($fjobs, Jobs::where('title', 'LIKE', '%' . $word . '%')
+                ->orWhere('description', 'LIKE', '%' . $word . '%')->get()->toArray());
+            $fjobs = array_unique($fjob, SORT_REGULAR);
+        }
+        return view('site.search', ['users' => $fusers, 'articles' => $farticles, 'organizations' => $forganizations, 'jobs' => $fjobs, 'search' => $searchreal]);
     }
 }
 
