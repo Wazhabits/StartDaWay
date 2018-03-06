@@ -9,6 +9,7 @@
     <link href="/css/fontawesome-all.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <title>StartDaWay | StartUp Referencer,  montrez vous, exposez vous et gagnez en popularité</title>
 </head>
 <body>

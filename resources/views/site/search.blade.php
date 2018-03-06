@@ -8,7 +8,7 @@
     <div class="row">
         <div class="hidden-xs-down hidden-sm-down col-md-4 col-lg-4 col-xl-4"></div>
         <main class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8" id="page_main">
-            <h2>Résultat de recherche pour : "{{$search}}"</h2>
+            <h2 class="title_red">Résultat de recherche pour : "{{$search}}"</h2>
             @if(count($users) > 0)
                 <h3>Utilisateurs</h3>
                 @foreach($users as $user)
@@ -25,7 +25,6 @@
                     <p>{{$organization['name']}}</p>
                     <p>{{$organization['description']}}</p>
                     <p>{{$organization['email'] . " " . $organization['phone']}}</p>
-                    <p>Responsable : {{$organization['firstname'] . " " . $organization['lastname']}}</p>
                 @endforeach
                 <br>
             @endif
