@@ -52,4 +52,17 @@ class SiteView extends ViewController
     public function Search(Request $request, $search) {
         return $this->SearchView($request, $search);
     }
+
+
+
+
+
+//
+//
+// CREATE ORGANIZATION PAGE '/org/create'
+//
+//
+    public function CreateOrganizations(Request $request) {
+        return $this->CreateOrgView($request);
+    }
 }

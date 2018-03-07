@@ -26,9 +26,9 @@ class ViewController extends Controller
         if (Session::has('user'))
         {
             $users_info = Users::where('users.id', Session::get('user')->id)->join('organizations', 'users.id', '=', 'organizations.owner_id')->get()[0];
-            return view("site.index", ['all', $users_info, 'startup' => $last_org]);
+            return view("site.index", ['all', $users_info, 'last_org' => $last_org]);
         } else {
-            return view("site.index", ['startup' => $last_org]);
+            return view("site.index", ['last_org' => $last_org]);
         }
     }
 
@@ -52,11 +52,13 @@ class ViewController extends Controller
             return view('site.organization', [ "organization" => $organization]);
         }
         else
-            return view('site.index', [ "error" => "Désolé, mais aucune organisation nommé : " . $realname . "
+            return view('site.organization', [ "error" => "Désolé, mais aucune organisation nommé : " . $realname . "
             n'a été trouvée"]);
     }
 
-
+    public function CreateOrgView(Request $request) {
+        return view("site.organizations.create");
+    }
 
 
 

@@ -15,7 +15,6 @@
                     <p>{{$user['firstname'] . " " . $user['lastname']}}</p>
                     <p>{{$user['email']}}</p>
                     <p>{{$user['phone']}}</p>
-                    <!--<p>{$user['ad_nbr'] . " " . $user['ad_type'] . " " . $user['ad_name'] . " " . $user['ad_pc'] . " " . $user['city']}</p>-->
                 @endforeach
                 <br>
             @endif

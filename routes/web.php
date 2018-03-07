@@ -22,13 +22,16 @@ Route::get('/', 'SiteView@Index')->name('index');
 //
 // ORGANIZATION
 //
-Route::get('/org/{organization}', 'SiteView@Organization')->name('organization');
+Route::get('/org/view/{organization}', 'SiteView@Organization')->name('organization');
 //
 // SEARCH
 //
 Route::post('/prepare/search/', 'DataController@Search');
 Route::get('/search/{search}', 'SiteView@Search')->name('search');
-
+//
+// CREATE ORGANIZATION
+//
+Route::get('/org/create/', 'SiteView@CreateOrganizations');
 
 
 
