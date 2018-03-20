@@ -1,43 +1,38 @@
 @include("site.head")
-<section class="container-fluid">
-        <div class="row">
-                <nav class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" id="menu">
-                    @include("site.menu")
-                </nav>
-        </div>
-    <div class="row">
-        <div class="hidden-xs-down hidden-sm-down col-md-4 col-lg-4 col-xl-4"></div>
-        <main class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8" id="page_main">
-            @if(isset($error))
-                {{$error}}
-            @endif
-            @if(isset($valid))
-                {{$valid}}
-            @endif
-            <h2 class="title_gray">Nouvelles</h2>
-            <div class="startup_preview_div">
-                @foreach($last_org as $start)
-                    <div class="startup_preview
-                    @if ($start->id % 4 == 0)
-                            preview_red
-                    @endif
-                    @if ($start->id % 4 == 1)
-                            preview_dgray
-                    @endif
-                    @if ($start->id % 4 == 2)
-                            preview_white
-                    @endif
-                    @if ($start->id % 4 == 3)
-                            preview_gray
-                    @endif
-                    ">
-                        <h4>{{$start->name}}</h4>
-                        <p><i>{{$start->description}}</i></p>
-                    </div>
-                @endforeach
+@include("site.menu")
+@foreach($articles as $a)
+    @php
+        $date = str_replace(':', '-', $a->created_at);
+        $date = str_replace(' ', '-', $date);
+        $date = explode('-', $date);
+    @endphp
+    <div class="col-1"></div>
+    <div class="col-10 article row">
+        <h3 class="col-12">{{$a->title}}</h3>
+        <div class="col-4 img" style="background-image: url({{$a->image}})"></div>
+        <div class="col-8">
+            <div class="col-12 row article-content">
+                {{$a->description}}
             </div>
-            <h2 class="title_red">Nouveautées</h2>
-        </main>
+            <div class="row">
+                <div class="col-6"></div>
+                @php
+                    $url = str_replace('+', '-', urlencode($a->title));
+                @endphp
+                <a class="col-6 content-link" href="article/{{$url}}">{{$a->button}} <i class="fas fa-angle-double-right"></i></a>
+            </div>
+        </div>
+        <div class="col-9"></div>
+        <div class="col-3">
+            @php
+                $url = str_replace('+', '-', urlencode(\App\Organizations::where('id', $a->org_id)->get()[0]->name));
+            @endphp
+            <span><a href="/org/view/{{$url}}">{{\App\Organizations::where('id', $a->org_id)->get()[0]->name}}</a> - <i>le {{$date[2] . "/" . $date[1] . "/" . $date[0]}}</i></span>
+        </div>
     </div>
-</section>
+    <div class="col-1"></div>
+@endforeach
+<style>
+
+</style>
 @include("site.footer")

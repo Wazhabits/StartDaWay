@@ -28,6 +28,22 @@ class SiteView extends ViewController
 
 
 
+//
+//
+// ARTICLE PAGE '/article/{NAME}'
+//
+//
+    public function Article(Request $request, $title_encode) {
+        $title = urldecode(str_replace('-', '+', $title_encode));
+        return $this->ArticleView($title);
+    }
+
+
+
+
+
+
+
 
 
 //
@@ -64,5 +80,18 @@ class SiteView extends ViewController
 //
     public function CreateOrganizations(Request $request) {
         return $this->CreateOrgView($request);
+    }
+
+
+
+
+
+//
+//
+// JOB BOARD PAGE '/jobs/'
+//
+//
+    public function JobsBoard() {
+        return $this->ViewJob();
     }
 }

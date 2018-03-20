@@ -22,17 +22,40 @@ class ViewController extends Controller
 //
 //
     public function IndexView() {
-        $last_org = Organizations::limit(4)->offset(4)->get();
-        if (Session::has('user'))
-        {
-            $users_info = Users::where('users.id', Session::get('user')->id)->join('organizations', 'users.id', '=', 'organizations.owner_id')->get()[0];
-            return view("site.index", ['all', $users_info, 'last_org' => $last_org]);
-        } else {
-            return view("site.index", ['last_org' => $last_org]);
-        }
+        $art = Articles::all();
+        return view('site.index', ['articles' => $art]);
     }
 
 
+
+
+
+
+
+//
+//
+// JOB BOARD VIEW
+//
+//
+    public function ViewJob() {
+        return view('site.job.board');
+    }
+
+
+
+
+
+
+
+//
+//
+// ARTICLE VIEW
+//
+//
+    public function ArticleView($title) {
+        $art = Articles::where('title', $title)->get()[0];
+        return view('site.article.view', ['article' => $art]);
+    }
 
 
 

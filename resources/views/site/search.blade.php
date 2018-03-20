@@ -1,13 +1,5 @@
 @include('site.head')
-<section class="container-fluid">
-    <div class="row">
-        <nav class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" id="menu">
-            @include("site.menu")
-        </nav>
-    </div>
-    <div class="row">
-        <div class="hidden-xs-down hidden-sm-down col-md-4 col-lg-4 col-xl-4"></div>
-        <main class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8" id="page_main">
+    @include("site.menu")
             <h2 class="title_red">Résultat de recherche pour : "{{$search}}"</h2>
             @if(count($users) > 0)
                 <h3>Utilisateurs</h3>
@@ -45,7 +37,4 @@
             @if(count($articles) + count($users) + count($jobs) + count($organizations) == 0)
                 Il n'y a aucun résultat pour cette recherche
             @endif
-        </main>
-    </div>
-</section>
 @include('site.footer')

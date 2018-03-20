@@ -19,6 +19,7 @@ class CreateArticlesTable extends Migration
             $table->string('description', 1000);
             $table->datetime('posted');
             $table->string('image', 200);
+            $table->string('button', 20);
             $table->integer('org_id');
             $table->foreign('org_id')->references('id')->on('organizations');
             $table->timestamps();

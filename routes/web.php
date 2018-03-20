@@ -32,7 +32,14 @@ Route::get('/search/{search}', 'SiteView@Search')->name('search');
 // CREATE ORGANIZATION
 //
 Route::get('/org/create/', 'SiteView@CreateOrganizations');
-
+//
+// ARTICLE
+//
+Route::get('/article/{title_encode}', 'SiteView@Article');
+//
+// JOB BOARD
+//
+Route::get('/jobs/', 'SiteView@JobsBoard')->name('jobs');
 
 
 
@@ -60,7 +67,7 @@ Route::post('member/update', 'DataController@MemberUpdate');
 //
 // USER DISCONNECTION
 //
-Route::post('member/disconnect', 'DataController@MemberDisconnect');
+Route::get('member/disconnect', 'DataController@MemberDisconnect');
 //
 
 
@@ -77,9 +84,9 @@ Route::post('member/disconnect', 'DataController@MemberDisconnect');
 //
 Route::post('organizations/create', 'DataController@OrganizationCreate');
 //
+// UPDATE ORGANIZATION
 //
-//
-
+Route::post('organizations/update', 'DataController@OrganizationUpdate');
 
 
 

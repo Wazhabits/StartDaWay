@@ -68,9 +68,14 @@ class DataController extends Controller
         return Organizations::NewOrg($request);
     }
 //
+// UPDATE ORG
+//
+    public function OrganizationUpdate (Request $request) {
+        return Organizations::UpdateOrg($request);
+    }
 //
 //
-
+//
 
 
 
