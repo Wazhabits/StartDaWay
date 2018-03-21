@@ -7,8 +7,8 @@
     @endphp
     <form action="{{action('DataController@OrganizationUpdate')}}" method='post' class="row">
         {{csrf_field()}}
-        <div class="col-4 col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-4 start-update row">
-            <h3 class="col-12">Informations obligatoire</h3>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-3 start-update">
+            <h3 class="col-12">Informations</h3>
             <label for="" class="col-12">SIREN</label>
             <input name='sirens' type="text" maxlength="9" minlength="9" value="{{$org->siren}}" disabled class="col-12">
             <input name='siren' type="text" maxlength="9" minlength="9" value="{{$org->siren}}" hidden>
@@ -22,11 +22,11 @@
             <label for="" class="col-12">Logo</label>
             <input name='logo' type="url" value="{{$org->logo}}" class="col-12">
         </div>
-        <div class="col-4 col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-4 start-update row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-5 start-update">
             <h3 class="col-12">Description</h3>
             <textarea name="description" class="col-12">{{$org->description}}</textarea>
        </div>
-        <div class="col-4 col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 start-update row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 start-update">
             <h3 class="col-12">Contact</h3>
             <label for="" class="col-12">* Téléphone</label>
             <input name='phone' type="tel" value="{{$org->phone}}" class="col-12">
@@ -64,7 +64,7 @@
             @endphp
         <form action="{{action('DataController@OrganizationCreate')}}" method="post" class="row">
             {{csrf_field()}}
-            <div class="col-4 col-sm-12 col-xs-12 col-md-12 col-lg-6 colg-xl-4 start-update">
+            <div class="col-sm-12 col-xs-12 col-md-12 col-lg-6 colg-xl-4 start-update">
                 <label  class="col-12" for="">SIREN</label>
                 <input class="col-12" type="text" placeholder="123 456 789" maxlength="9" minlength="9">
                 <label  class="col-12" for="">Nom</label>
@@ -74,11 +74,11 @@
                 <label  class="col-12" for="">Adresse</label>
                 <input  class="col-12" type="text" placeholder="33 boulevard du massacre 44100 Nantes">
             </div>
-            <div class="col-5 col-sm-12 col-xs-12 col-md-12 col-lg-6 col-xl-5 start-update">
+            <div class="col-sm-12 col-xs-12 col-md-12 col-lg-6 col-xl-5 start-update">
                 <label  class="col-12" for="">Description</label>
                 <textarea class="col-12" name="" rows="25" placeholder="Référence ta StartUp, montres toi ! Et gagne en notoriété"></textarea>
             </div>
-            <div class="col-3 col-sm-12 col-xs-12 col-md-12 col-lg-6 col-xl-3 start-update">
+            <div class="col-sm-12 col-xs-12 col-md-12 col-lg-6 col-xl-3 start-update">
                 <div class="col-12">
                     <label  class="col-12" for="">E-mail</label>
                     <input  class="col-12" type="text" placeholder="votre@domain.fr">
@@ -93,5 +93,4 @@
         }
         @endphp
     </form>
-    <hr>
 </div>

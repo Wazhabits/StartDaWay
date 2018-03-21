@@ -3,3 +3,6 @@
 <link href="/css/style.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+<link rel="stylesheet" href="/css/component.css">
+<link rel="stylesheet" href="/css/normalize.css">
+<script src="/js/modernizr.custom.js"></script>

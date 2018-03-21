@@ -1,10 +1,10 @@
-<div class="collapse col-12" id="menu-user">
+<div class="col-12 collapse" id="menu-user">
     @if(!Session::has('user'))
         <form action="{{action('DataController@MemberConnect')}}" method="post" class="register row">
              {{csrf_field()}}
             <p class="col-12">Se connecter</p>
-            <div class="col-3"></div>
-            <div class="col-6 register_col">
+            <div class="hidden-xs-down hidden-sm-down hidden-md-down col-lg-2 col-xl-2"></div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 register_col">
                 <input style="display:none;" type="text" name="fackdachrome" />
                 <input style="display:none;" type="password" name="fackdachromes" />
                 <label for="" class="col-12">Pseudo</label>
@@ -13,13 +13,12 @@
                 <input class="col-12" type="password" name="password" placeholder="Mots de passe"  autocomplete="off" required>
                 <button class="col-12" type="submit">Connexion<i class="fas fa-angle-double-right"></i></button>
             </div>
-            <div class="col-3"></div>
+            <div class="hidden-xs-down hidden-sm-down hidden-md-down col-lg-2 col-xl-2"></div>
         </form>
-        <hr>
         <form action="{{action('DataController@MemberRegister') }}" method="post" class="register row">
             {{ csrf_field() }}
             <p class="col-12">Nous rejoindre !</p>
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 register_col">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 register_col">
                 <p class="col-12">Authentification</p>
                 <label class="col-12" for="">Pseudo</label>
                 <input type="text" name="login" placeholder="Pseudo" class="col-12"  autocomplete="off" required>
@@ -28,8 +27,8 @@
                 <label class="col-12" for="">Confirmation</label>
                 <input type="password" name="confirmation" placeholder="Confirmation" class="col-12"  autocomplete="off" required>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 register_col">
-                <p class="col-12">Informations Personnelles</p>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 register_col">
+                <p class="col-12">Informations</p>
                 <label class="col-12" for="">Prénom</label>
                 <input type="text" name="firstname" placeholder="Prénom" class=" col-12"  autocomplete="off" required>
                 <label class="col-12" for="">Nom</label>
@@ -37,7 +36,7 @@
                 <label class="col-12" for="">Adresse</label>
                 <input type="text" name="address" placeholder="XX boulevard de l'égalité 44000 Nantes" class="register_input col-12" required>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 register_col">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 register_col">
                 <p class="col-12">Contact</p>
                     <label class="col-12" for="">Adresse mail</label>
                     <input type="email" name="mail" placeholder="E-Mail" class=" col-12"  autocomplete="off" required>
@@ -48,17 +47,20 @@
             <div class="col-6"><button class="col-12">Soumettre <i class="fas fa-gavel"></i></button></div>
             <div class="col-3"></div>
         </form>
-        <hr>
     @else
         <form action="{{action('DataController@MemberUpdate')}}" method="post" class="update_profil">
             <div class="row">
-                <p class="col-12">Mr/Mme <strong>{{ Session::get('user')->lastname . " " . Session::get('user')->firstname }}</strong></p>
                 {{csrf_field()}}
-                <div class="col-6">
-                    <p>Attention, si vous modifier votre profil, un mail de confirmation vous sera envoyé.</p>
-                    <p>ce mail contiendra un lien pour réactiver votre compte.</p>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                    <p class="col-12">Bonjour Mme/Mr <strong>{{ Session::get('user')->lastname . " " . Session::get('user')->firstname }}</strong></p>
+                    <div class="col-1"></div>
+                    <p class="col-10">Attention, si vous modifier votre profil, un mail de confirmation vous sera envoyé.</p>
+                    <div class="col-1"></div>
+                    <div class="col-1"></div>
+                    <p class="col-10">ce mail contiendra un lien pour réactiver votre compte.</p>
+                    <div class="col-1"></div>
                 </div>
-                <div class="col-6">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
                     <label for="" class="col-12">E-Mail</label>
                     <input type="text" value="{{Session::get('user')->email}}" name="email" class="col-12" autocomplete="off" >
                     <label for="" class="col-12">Phrase de passe</label>
@@ -70,7 +72,6 @@
                 </div>
             </div>
         </form>
-        <hr>
     @endif
 </div>
 

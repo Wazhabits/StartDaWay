@@ -1,13 +1,15 @@
-                </main>
-            </div>
+            </main>
         </section>
-        <footer class="container">
-            <div class="row">
-                <div class="col-8" style="text-align: center">Copyright 2018 All Rights Reserved - Anatole Piveteau</div>
-                <div class="col-3">
-                    <div class="col-12">Anatole PIVETEAU</div>
-                    <div class="col-12"><a href="tel:0648162159"><i class="fas fa-mobile"></i> 06 48 16 21 59</a></div>
-                    <div class="col-12"><a href="mailto:anatole.piveteau@gmail.com"><i class="far fa-envelope"></i> anatole.piveteau@gmail.com</a></div>
+        <footer class="container-fluid">
+            <div class="row foot-copyright">
+                <span id="logo_title" class="col-4"><div id="sitename">StartDaWay</div> <div id="sitepunchline">< StartUp Referencer /></div></span>
+                <div class="col-4" style="text-align: center">
+                   <div>Copyright 2018 - All Rights Reserved</div>
+                </div>
+                <div class="col-4">
+                    <div>Anatole Piveteau</div>
+                    <div><a href="tel:0648162159"><i class="fas fa-mobile"></i> <span>06 48 16 21 59</span></a></div>
+                    <div><a href="mailto:anatole.piveteau@gmail.com"><i class="far fa-envelope"></i> <span>anatole.piveteau@gmail.com</span></a></div>
                 </div>
             </div>
         </footer>
