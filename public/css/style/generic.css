@@ -1,0 +1,143 @@
+ul {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    list-style: none;
+}
+
+label {
+    font-weight: bold;
+}
+
+a:visited {
+    border: 0;
+}
+
+li {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    list-style: none;
+}
+
+svg {
+    margin: 0;
+    padding: 0;
+}
+
+div {
+    padding: 0;
+    margin: 0;
+}
+
+input {
+    height: 50px;
+    padding: 0 25px;
+    margin: 0;
+    background-color: #49566510;
+    font-family: 'Ubuntu', sans-serif !important;
+    border: 1px transparent solid;
+    box-sizing: border-box;
+    transition: 0.3s;
+}
+
+input:focus {
+    transition: 0.3s;
+    height: 70px;
+    line-height: 70px;
+    background-color: white;
+}
+
+
+form a {
+    color: #be3144;
+}
+
+::-moz-selection { /*@bugfix mozilla*/
+    background: #be3144; /* REMPLACER PAR LA COULEUR DÉSIRÉE*/
+    color: #ffffff; /* REMPLACER PAR LA COULEUR DÉSIRÉE*/
+}
+::selection { /* effet souris  */
+    background: #be3144; /* REMPLACER PAR LA COULEUR DÉSIRÉE*/
+    color: #ffffff;
+}
+
+a:hover {
+    color: #495665;
+}
+
+
+button {
+    margin: 25px 0 !important;
+    border: 2px #495665 solid !important;
+    border-radius: 50px;
+    padding: 10px;
+    height: 50px;
+    line-height: 26px !important;
+    font-size: 22px;
+    color:#495665 !important;
+    text-align: center;
+    box-sizing: border-box;
+    transition: 0.3s;
+    overflow: hidden;
+    background-color: transparent;
+}
+
+button>svg {
+    float: right;
+    height: 26px !important;
+    width: 50px;
+    margin-right: -50px;
+    color: transparent;
+    visibility: hidden;
+    transition: 0.3s;
+}
+
+button:hover {
+    color: #be3144 !important;
+    border: 2px #49566500 solid !important;
+    transition: 0.3s;
+}
+
+button:hover>svg {
+    visibility: visible;
+    transition: 0.3s;
+    margin: 0;
+    color: #be3144;
+}
+
+a {
+    margin: 0;
+    padding: 0;
+    text-decoration: none !important;
+    color: inherit;
+}
+
+p {
+    margin: 0;
+}
+
+body {
+    background-color: #F3F5F8;
+}
+
+header {
+    font-family: 'Roboto', sans-serif;
+}
+
+footer {
+    font-family: 'Roboto', sans-serif;
+}
+
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
+}
+
+.center {
+    text-align: center;
+    margin: auto;
+}

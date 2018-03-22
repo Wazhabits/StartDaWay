@@ -1,8 +1,8 @@
 <div class="col-12 collapse" id="menu-user">
     @if(!Session::has('user'))
-        <form action="{{action('DataController@MemberConnect')}}" method="post" class="register row">
+        <form action="{{action('DataController@MemberConnect')}}" method="post" class="row">
              {{csrf_field()}}
-            <p class="col-12">Se connecter</p>
+            <p class="col-12 center form-title">Se connecter</p>
             <div class="hidden-xs-down hidden-sm-down hidden-md-down col-lg-2 col-xl-2"></div>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 register_col">
                 <input style="display:none;" type="text" name="fackdachrome" />
@@ -11,42 +11,51 @@
                 <input class="col-12" type="text" name="login" placeholder="Pseudo / E-mail"  autocomplete="off" required>
                 <label for="" class="col-12">Mots de passe</label>
                 <input class="col-12" type="password" name="password" placeholder="Mots de passe"  autocomplete="off" required>
-                <button class="col-12" type="submit">Connexion<i class="fas fa-angle-double-right"></i></button>
+                <div class="col-12">
+                    <div class="col-6">
+                        <a href="#register_form" data-toggle="collapse">Nous rejoindre ?</a>
+                    </div>
+                </div>
+                <button class="col-4 right" type="submit">Connexion<i class="fas fa-angle-double-right"></i></button>
             </div>
             <div class="hidden-xs-down hidden-sm-down hidden-md-down col-lg-2 col-xl-2"></div>
         </form>
-        <form action="{{action('DataController@MemberRegister') }}" method="post" class="register row">
-            {{ csrf_field() }}
-            <p class="col-12">Nous rejoindre !</p>
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 register_col">
-                <p class="col-12">Authentification</p>
-                <label class="col-12" for="">Pseudo</label>
-                <input type="text" name="login" placeholder="Pseudo" class="col-12"  autocomplete="off" required>
-                <label class="col-12" for="">Phrase de passe</label>
-                <input type="password" name="password" placeholder="Password" class="col-12"  autocomplete="off" required>
-                <label class="col-12" for="">Confirmation</label>
-                <input type="password" name="confirmation" placeholder="Confirmation" class="col-12"  autocomplete="off" required>
+        <div class="col-12">
+            <div class="collapse" id="register_form">
+                <form action="{{action('DataController@MemberRegister') }}" method="post" class="row">
+                    {{ csrf_field() }}
+                    <p class="col-12 center form-title">Inscription</p>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 register_col">
+                        <p class="col-12">Authentification</p>
+                        <label class="col-12" for="">Pseudo</label>
+                        <input type="text" name="login" placeholder="Pseudo" class="col-12"  autocomplete="off" required>
+                        <label class="col-12" for="">Phrase de passe</label>
+                        <input type="password" name="password" placeholder="Password" class="col-12"  autocomplete="off" required>
+                        <label class="col-12" for="">Confirmation</label>
+                        <input type="password" name="confirmation" placeholder="Confirmation" class="col-12"  autocomplete="off" required>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 register_col">
+                        <p class="col-12">Informations</p>
+                        <label class="col-12" for="">Prénom</label>
+                        <input type="text" name="firstname" placeholder="Prénom" class=" col-12"  autocomplete="off" required>
+                        <label class="col-12" for="">Nom</label>
+                        <input type="text" name="lastname" placeholder="Nom" class="col-12"  autocomplete="off" required>
+                        <label class="col-12" for="">Adresse</label>
+                        <input type="text" name="address" placeholder="XX boulevard de l'égalité 44000 Nantes" class="register_input col-12" required>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 register_col">
+                        <p class="col-12">Contact</p>
+                            <label class="col-12" for="">Adresse mail</label>
+                            <input type="email" name="mail" placeholder="E-Mail" class=" col-12"  autocomplete="off" required>
+                            <label class="col-12" for="">Téléphone</label>
+                            <input type="tel" name="phone" placeholder="Téléphone" class="col-12"  autocomplete="off" required>
+                    </div>
+                    <div class="col-4"></div>
+                    <button class="col-4 right">Soumettre <i class="fas fa-gavel"></i></button>
+                    <div class="col-4"></div>
+                </form>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 register_col">
-                <p class="col-12">Informations</p>
-                <label class="col-12" for="">Prénom</label>
-                <input type="text" name="firstname" placeholder="Prénom" class=" col-12"  autocomplete="off" required>
-                <label class="col-12" for="">Nom</label>
-                <input type="text" name="lastname" placeholder="Nom" class="col-12"  autocomplete="off" required>
-                <label class="col-12" for="">Adresse</label>
-                <input type="text" name="address" placeholder="XX boulevard de l'égalité 44000 Nantes" class="register_input col-12" required>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 register_col">
-                <p class="col-12">Contact</p>
-                    <label class="col-12" for="">Adresse mail</label>
-                    <input type="email" name="mail" placeholder="E-Mail" class=" col-12"  autocomplete="off" required>
-                    <label class="col-12" for="">Téléphone</label>
-                    <input type="tel" name="phone" placeholder="Téléphone" class="col-12"  autocomplete="off" required>
-            </div>
-            <div class="col-3"></div>
-            <div class="col-6"><button class="col-12">Soumettre <i class="fas fa-gavel"></i></button></div>
-            <div class="col-3"></div>
-        </form>
+        </div>
     @else
         <form action="{{action('DataController@MemberUpdate')}}" method="post" class="update_profil">
             <div class="row">
@@ -68,15 +77,9 @@
                     <label for="" class="col-12">Confirmation</label>
                     <input type="password" value="noresetpassword" name="confirmation" class="col-12" autocomplete="off" >
                     <div class="col-8"></div>
-                    <button class="col-4">Mettre à jour <i class="fas fa-check"></i></button>
+                    <button class="col-4 right">Mettre à jour <i class="fas fa-check"></i></button>
                 </div>
             </div>
         </form>
     @endif
 </div>
-
-<style>
-    .update_profil>div>p {
-        font-size: 22px;
-    }
-</style>

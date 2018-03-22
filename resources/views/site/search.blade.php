@@ -1,5 +1,4 @@
 @include('site.head')
-    @include("site.menu")
             <h2 class="title_red">Résultat de recherche pour : "{{$search}}"</h2>
             @if(count($users) > 0)
                 <h3>Utilisateurs</h3>

@@ -1,0 +1,23 @@
+
+.foot-copyright svg {
+    width: 25px !important;
+    margin-right: 10px;
+}
+
+.foot-copyright {
+    padding: 25px 0;
+    background-color: #495665;
+    color: white;
+}
+
+.foot-copyright a {
+    color: #FFFFFFCC;
+}
+
+.foot-copyright a:hover {
+    color: white;
+}
+
+.foot-copyright>#logo_title>#sitepunchline {
+    color: white;
+}

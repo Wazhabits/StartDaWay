@@ -35,7 +35,7 @@
             <label for="" class="col-12">* Adresse postale</label>
             <input name='adresse' type="text" value="{{$org->ad_nbr . " " . $org->ad_type . " " . $org->ad_name . " " . $org->ad_pc . " " . $org->ad_city}}" class="col-12">
 
-            <button class="col-12">Mettre à jour <i class="fas fa-check"></i></button>
+            <button class="col-12 right">Mettre à jour <i class="fas fa-check"></i></button>
         </div>
         <div class="col-12 startup-member row">
             <h3 class="col-12">Membres</h3>

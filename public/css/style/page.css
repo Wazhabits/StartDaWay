@@ -1,0 +1,89 @@
+
+#page_main {
+    padding: 0 10px;
+    margin: 0 0 50px 0;
+    font-family: 'Lato', sans-serif;
+}
+
+#page_main>h2 {
+    padding: 20px;
+    background-color: white;
+    margin: 0;
+}
+
+
+.article {
+    border: 1px #49566520 solid;
+    padding: 25px 10px;
+    background-color: white;
+    border-bottom-right-radius: 50px;
+}
+
+.article .img {
+    height: 450px;
+    background-position: center;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+}
+
+.article-content {
+    padding: 50px 25px;
+    text-align: justify;
+    line-height: 24px;
+    font-size: 18px;
+    height: 168px;
+    margin-bottom: 75px;
+    overflow: hidden;
+}
+
+.article>h3 {
+    text-align: center;
+    padding: 10px 0;
+    font-size: 30px;
+    height: 50px;
+}
+
+.article>div>span {
+    float: right;
+}
+
+.content-link {
+    position: absolute;
+    bottom: 50px;
+    right: 25px;
+    height: 50px;
+    line-height: 25px;
+    font-size: 22px;
+    color:#495665 !important;
+    border: 2px #495665 solid !important;
+    border-radius: 50px;
+    padding: 10px;
+    text-align: center;
+    box-sizing: border-box;
+    transition: 0.3s;
+    overflow: hidden;
+}
+
+.content-link>svg {
+    width: 50px;
+    margin-right: -50px;
+    color: transparent;
+    visibility: hidden;
+    float: right;
+    transition: 0.3s;
+}
+
+.content-link:hover {
+    transition: 0.3s;
+    color: #be3144 !important;
+    border: 2px transparent solid !important;
+}
+
+.content-link:hover>svg {
+    visibility: visible;
+    transition: 0.3s;
+    margin-right: 0;
+    color: #be3144;
+    float: right;
+    height: 30px;
+}
